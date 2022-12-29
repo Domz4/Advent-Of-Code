@@ -65,46 +65,59 @@ function part1(input) {
       });
     });
   const queue = [[0, 0]];
-  const visited = new Array(...queue);
+  const visited = new Array();
   while (queue.length > 0) {
     let current = queue.shift();
     for (let i = 0; i <= 3; i++) {
       let neighbour = neighbours(current).heights[i];
       let index = neighbours(current).index[i];
       let wall = neighbours(current).walls;
-      if (neighbour === "E" && graph[current[0]][current[1]] === 25) {
-        return (queue = []);
-      }
       if (
-        !visited.some((arr) => {
-          if (arr === null) return;
-          else arr.every((val, index) => val === [1, 0][index]);
+        visited.some((e) => {
+          index === null ? true : e[0] === index[0] && e[1] === index[1];
         })
       )
-        if (wall && index !== null) {
-          switch (i) {
-            case 0: {
-              queue.push(index);
-              visited.push(index);
-              break;
-            }
-            case 1: {
-              queue.push(index);
-              visited.push(index);
-              break;
-            }
-            case 2: {
-              queue.push(index);
-              visited.push(index);
-              break;
-            }
-            case 3: {
-              queue.push(index);
-              visited.push(index);
-              break;
-            }
+        if (neighbour === "E" && graph[current[0]][current[1]] === 25) {
+          return (queue = []);
+        }
+
+      if (
+        wall &&
+        index !== null &&
+        !visited.some((e) => e[0] === current[0] && e[1] === current[1])
+      ) {
+        console.log(i);
+        switch (i) {
+          case 0: {
+            console.log("first");
+            queue.push(index);
+            visited.push(index);
+            break;
+          }
+          case 1: {
+            console.log("first");
+
+            queue.push(index);
+            visited.push(index);
+            break;
+          }
+          case 2: {
+            console.log("first");
+
+            queue.push(index);
+            visited.push(index);
+            break;
+          }
+          case 3: {
+            console.log("first");
+
+            queue.push(index);
+            visited.push(index);
+            break;
           }
         }
+        console.log(queue);
+      }
     }
   }
 
